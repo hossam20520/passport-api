@@ -1,0 +1,39 @@
+https://www.tutsmake.com/create-rest-api-using-passport-laravel-5-8-authentication/
+
+composer require laravel/passport
+
+
+  // config/app.php
+
+'providers' =>[
+ Laravel\Passport\PassportServiceProvider::class,
+ ],
+
+
+  Use Schema; 
+ public function boot() { 
+ Schema::defaultStringLength(191); 
+ }
+
+
+ php artisan migrate
+
+
+php artisan passport:install
+
+ config/auth.php
+
+
+    [ 
+         'web' => [ 
+             'driver' => 'session', 
+             'provider' => 'users', 
+         ], 
+         'api' => [ 
+             'driver' => 'passport', 
+             'provider' => 'users', 
+         ], 
+     ],
+
+
+     php artisan make:controller Api\AuthController
